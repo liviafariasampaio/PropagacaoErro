@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/PROPAGACAO_ERRO" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
