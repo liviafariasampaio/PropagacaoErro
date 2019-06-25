@@ -436,21 +436,6 @@ class PROPAGACAO_ERRO:
         print "as distancias entre os pontos T e A,B,C sao", dTA,dTB,dTC 
         
         
-        ###Funcao Calculo do azimute entre T1 e Ai 
-   #     Azimutes = [0 for x in range(len(AX))]
-   #     def azimute (AX1,TX,AY1,TY,AZ1,TZ):
-   #         x = AX1-TX
-   #         y = AY1-TY
-   #         az = degrees(atan(fabs(x/y)))
-   #         if x>0 and y>0:
-   #             return az
-   #         elif x>0 and y<0:
-   #             return 270-az
-   #         elif x<0 and y<0:
-   #             return 270+az
-   #         else:
-   #             return 360-az
-        
         def azimute(xa, ya, xb, yb):
             if (xa == xb) and (ya == yb):
                 print('ERRO: ponto A coincide com ponto B.')
@@ -501,11 +486,6 @@ class PROPAGACAO_ERRO:
             else:
                 return HTA2
             
-        
-        # Calcula os angulos A, B, C:
-    #    BTA = angHorizontal(AzTB,AzTA)
-    #    CTB = angHorizontal(AzTC,AzTB)
-    #    print "os angulos BTA e CTB sao", BTA, CTB
         
         # Calcula os angulos A, B, C:
         BTA = calcAng(bX[0],bY[0],TX[0],TY[0],aX[0],aY[0])
@@ -589,8 +569,6 @@ class PROPAGACAO_ERRO:
         dVcpZ = -1/(dTC1*((1-(TZ[0]/dTC1-cZ[0]/dTC1)**2)**(1/2)))
         print "os valores das derivadas", dalfaX,dalfaY,dalfaZ,dbetaX,dbetaY,dbetaZ,dVapX,dVapY,dVapZ,dVbpX,dVbpY,dVbpZ,dVcpX,dVcpY,dVcpZ 
         
-        
-
         
         def ajustaParametrico(Lb,P,Xo,Lo,A):
             n = np.size(A,0)
@@ -860,10 +838,6 @@ class PROPAGACAO_ERRO:
         
         conn = psycopg2.connect(database="PROPAGACAO_ERRO", host="localhost", user="postgres", password="postgres", port="5432")
         cur = conn.cursor()
-        
-    #    for i in range(len(dpM)):
-    #        cur.execute ("""UPDATE PONTOS_ENCOSTA SET DPM = '%s' WHERE ponto = '%s'"""%(str(dpM[i]).strip('[]'),P[i]))
-            
             
         for i in range(len(dpx)):
             cur.execute ("""UPDATE PONTOS_ENCOSTA SET dpx = '%s' WHERE ponto = '%s'"""%(str(dpx[i]).strip('[]'),Ponto[i]))
